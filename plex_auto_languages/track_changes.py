@@ -83,8 +83,9 @@ class TrackChanges():
                     self._changes.append((episode, part, AudioStream.STREAMTYPE, matching_audio_stream))
                 # Subtitle stream
                 matching_subtitle_stream = self._match_subtitle_stream(part.subtitleStreams())
-                if current_subtitle_stream is not None and matching_subtitle_stream is None:
-                    self._changes.append((episode, part, SubtitleStream.STREAMTYPE, None))
+                # todo: Don't default back to None, let user's Plex subtitle preferences take precedence. Use config in future
+                # if current_subtitle_stream is not None and matching_subtitle_stream is None:
+                #     self._changes.append((episode, part, SubtitleStream.STREAMTYPE, None))
                 if matching_subtitle_stream is not None and \
                         (current_subtitle_stream is None or matching_subtitle_stream.id != current_subtitle_stream.id):
                     self._changes.append((episode, part, SubtitleStream.STREAMTYPE, matching_subtitle_stream))
